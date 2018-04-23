@@ -67,6 +67,7 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
+        console.log( response.body.Results[0].Properties );
       }
     );
 
