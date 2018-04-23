@@ -56,7 +56,7 @@ express()
     SoapClient.retrieve(
       'DataExtensionObject["EmailContent"]',
       ["ID","Properties"],
-      reqoptions,
+
       function( err, response ) {
         if ( err ) {
           // error here
