@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "node-js-mc-test",
+  "version": "0.1.0",
+  "description": "A test Node.js app inregrated with MC",
   "engines": {
     "node": "8.9.1"
   },
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "fuel-rest": "^3.0.3"
   },
   "devDependencies": {
     "request": "^2.81.0",
@@ -20,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/anttifluido/mctest2018"
   },
   "keywords": [
     "node",
