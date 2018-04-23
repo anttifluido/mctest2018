@@ -55,7 +55,7 @@ express()
     };
 
     SoapClient.retrieve(
-      'DataExtensionObject["EmailContent"]',
+      'DataExtensionObject["DynamicContent"]',
       ["ObjectID"],
       reqoptions,
       function( err, response ) {
