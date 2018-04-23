@@ -86,7 +86,7 @@ express()
     const optionsRestReq = {
     	uri: '/asset/v1/content/assets',
       headers:{},
-    	formData: {
+    	json: {
         "name": "TestUpload",
         "assetType": {
           "name": "gif",
