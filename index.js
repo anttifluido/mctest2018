@@ -50,11 +50,12 @@ express()
         leftOperand: 'Client',
         operator: 'equals',
         rightOperand: 'Helsinki'
-      }
+      },
+      clientIDs: [{ ID:100003941 }]
     };
 
     SoapClient.retrieve(
-      'DataExtensionRow["EmailContent"]',
+      'DataExtensionObject["EmailContent"]',
       ["ID","Properties"],
       reqoptions,
       function( err, response ) {
