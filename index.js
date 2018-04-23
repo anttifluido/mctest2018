@@ -86,7 +86,7 @@ express()
     const optionsRestReq = {
     	uri: '/asset/v1/content/assets',
       headers:{},
-    	json: {
+    	multipart: {
         "name": "TestUpload",
         "assetType": {
           "name": "gif",
@@ -101,12 +101,14 @@ express()
     RestClient.post(optionsRestReq, (err, response) => {
     	if (err) {
     		// error here
+        console.log('error');
     		console.log(err);
     	}
 
     	// will be delivered with 200, 400, 401, 500, etc status codes
     	// response.body === payload from response
     	// response.res === full response from request client
+      console.log('response');
     	console.log(response);
     });
 
