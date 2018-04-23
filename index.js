@@ -14,7 +14,7 @@ express()
         clientId: process.env.CLIENT_ID
         , clientSecret: process.env.CLIENT_SECRET
       }
-      , soapEndpoint: 'https://webservice.s6.exacttarget.com/Service.asmx' // default --> https://webservice.exacttarget.com/Service.asmx
+      , soapEndpoint: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://webservice.exacttarget.com/Service.asmx
     };
     console.log('clientID:' + process.env.CLIENT_ID);
     var SoapClient = new FuelSoap(options);
