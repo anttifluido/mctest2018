@@ -19,7 +19,6 @@ express()
     };
 
     var SoapClient = new FuelSoap(options);
-    console.log(SoapClient);
 
     var reqoptions = {
       filter: {
@@ -32,6 +31,31 @@ express()
     SoapClient.retrieve(
       'DataExtension',
       ["Description"],
+      reqoptions,
+      function( err, response ) {
+        if ( err ) {
+          // error here
+          console.log( err );
+          return;
+        }
+
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
+      }
+    );
+
+    var reqoptions = {
+      filter: {
+        leftOperand: 'Client',
+        operator: 'equals',
+        rightOperand: 'Helsinki'
+      }
+    };
+
+    SoapClient.retrieve(
+      'DataExtensionObject["B1888E05-F9DE-42E1-A96D-3DC720957583"]',
+      ["ID","Properties"],
       reqoptions,
       function( err, response ) {
         if ( err ) {
