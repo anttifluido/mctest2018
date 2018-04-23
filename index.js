@@ -7,8 +7,11 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/edit', (req, res) => res.render('pages/edit'))
-  .get('/save', function(request, responsefromWeb) {
-    console.log(request);
+  .get('/edit', (req, res) => {
+    
+    res.render('pages/edit');
+  })
+  .get('/save', function(request, response) {
+    console.log(request)
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
