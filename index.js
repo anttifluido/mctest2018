@@ -85,7 +85,8 @@ express()
 
     const options = {
     	uri: '/platform/v1/endpoints',
-    	headers: {
+      headers:{},
+    	body: {
         "name": "1px transparent gif asset",
         "assetType": {
           "name": "gif",
@@ -112,7 +113,7 @@ express()
 
 
 
-  
+
 
     res.render('pages/edit');
   })
