@@ -84,7 +84,7 @@ express()
     const RestClient = new FuelRest(optionsRest);
 
     const optionsRestReq = {
-    	uri: '/platform/v1/endpoints',
+    	uri: '/asset/v1/content/assets',
       headers:{},
     	formData: {
         "name": "TestUpload",
