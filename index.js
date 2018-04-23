@@ -8,6 +8,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/edit', (req, res) => {
+
     var FuelSoap = require('fuel-soap');
     var options = {
       auth: {
@@ -16,22 +17,22 @@ express()
       }
       , soapEndpoint: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://webservice.exacttarget.com/Service.asmx
     };
-    console.log('clientID:' + process.env.CLIENT_ID);
-    var SoapClient = new FuelSoap(options);
-    console.log(options);
 
-    var options = {
+    var SoapClient = new FuelSoap(options);
+    console.log(SoapClient);
+
+    var reqoptions = {
       filter: {
         leftOperand: 'CustomerKey',
         operator: 'equals',
-        rightOperand: '05D89268-E818-4B4E-B4DA-56EB549CA3FB'
+        rightOperand: 'B1888E05-F9DE-42E1-A96D-3DC720957583'
       }
     };
 
     SoapClient.retrieve(
       'DataExtension',
       ["Description"],
-      options,
+      reqoptions,
       function( err, response ) {
         if ( err ) {
           // error here
