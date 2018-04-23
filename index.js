@@ -78,7 +78,7 @@ express()
         clientId: process.env.CLIENT_ID
         , clientSecret: process.env.CLIENT_SECRET
     	},
-    	origin: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://www.exacttargetapis.com
+    	//origin: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://www.exacttargetapis.com
     };
 
     const RestClient = new FuelRest(optionsRest);
@@ -86,7 +86,7 @@ express()
     const optionsRestReq = {
     	uri: '/asset/v1/content/assets',
       headers:{},
-    	multipart: {
+    	json: {
         "name": "TestUpload",
         "assetType": {
           "name": "gif",
