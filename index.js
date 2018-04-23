@@ -72,7 +72,7 @@ express()
     );
 
     const FuelRest = require('fuel-rest');
-    const options = {
+    const optionsRest = {
     	auth: {
     		// options you want passed when Fuel Auth is initialized
         clientId: process.env.CLIENT_ID
@@ -81,13 +81,13 @@ express()
     	origin: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://www.exacttargetapis.com
     };
 
-    const RestClient = new FuelRest(options);
+    const RestClient = new FuelRest(optionsRest);
 
-    const options = {
+    const optionsRestReq = {
     	uri: '/platform/v1/endpoints',
       headers:{},
     	body: {
-        "name": "1px transparent gif asset",
+        "name": "TestUpload",
         "assetType": {
           "name": "gif",
           "id": 20
@@ -99,7 +99,7 @@ express()
     };
 
 
-    RestClient.post(options, (err, response) => {
+    RestClient.post(optionsRestReq, (err, response) => {
     	if (err) {
     		// error here
     		console.log(err);
