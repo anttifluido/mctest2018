@@ -171,6 +171,9 @@ express()
     console.log(Promise);
     console.log(calls);
     console.log(Promise.all(calls));
+    Promise.all(calls).then(() => {
+        console.log('TADAA');
+    });
   /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
