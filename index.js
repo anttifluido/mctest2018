@@ -28,6 +28,12 @@ express()
       }
     };
 
+    var reqoptions = {
+      filter: {
+
+      }
+    };
+
     SoapClient.retrieve(
       'DataExtension',
       ["Description"],
@@ -45,7 +51,7 @@ express()
       }
     );
 
-    var reqoptions = {
+  /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
         operator: 'equals',
@@ -79,8 +85,10 @@ express()
         , clientSecret: process.env.CLIENT_SECRET
     	},
     	//origin: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://www.exacttargetapis.com
-    };
+    };*/
 
+    
+    /*
     const RestClient = new FuelRest(optionsRest);
 
     const optionsRestReq = {
@@ -111,7 +119,7 @@ express()
       console.log('response');
     	console.log(response);
     });
-
+*/
 
 
 
