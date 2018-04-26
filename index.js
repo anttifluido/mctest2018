@@ -73,6 +73,7 @@ express()
 
     var tracking = {};
     var calls = 0;
+    var callsToWait = 3;
 
     var reqoptions = {
       filter: {
@@ -82,38 +83,6 @@ express()
       }
     };
 
-    SoapClient.retrieve(
-      'ClickEvent',
-      ["EventDate","SendID","SubscriberKey","URL"],
-      reqoptions,
-      function( err, response ) {
-        if ( err ) {
-          // error here
-          console.log( err );
-          return;
-        }
-
-        console.log( response.body );
-        try{
-          var rows =  response.body.Results;
-          for (var i=0; i < rows.length; i++){
-            var row = rows[i];
-            if(!tracking[row['SendID']]){
-              tracking[row['SendID']] = { Sent: [], Click: [], Open:[] };
-            }
-            tracking[row['SendID']]['Click'].push(row.EventDate);
-          }
-          calls++;
-          if(calls==3){
-            console.log('TRACKING');
-            console.log( tracking );
-            return tracking;
-          }
-        }catch(e){
-          console.log(e);
-        }
-      }
-    );
 
     SoapClient.retrieve(
       'SentEvent',
@@ -126,7 +95,7 @@ express()
           return;
         }
 
-        console.log( response.body );
+        //console.log( response.body );
         try{
           var rows =  response.body.Results;
           for (var i=0; i < rows.length; i++){
@@ -137,7 +106,41 @@ express()
             tracking[row['SendID']]['Sent'].push(row.EventDate);
           }
           calls++;
-          if(calls==3){
+          if(calls==callsToWait){
+            console.log('TRACKING');
+            console.log( tracking );
+            return tracking;
+          }
+        }catch(e){
+          console.log(e);
+        }
+      }
+    );
+
+
+    SoapClient.retrieve(
+      'ClickEvent',
+      ["EventDate","SendID","SubscriberKey","URL"],
+      reqoptions,
+      function( err, response ) {
+        if ( err ) {
+          // error here
+          console.log( err );
+          return;
+        }
+
+        //console.log( response.body );
+        try{
+          var rows =  response.body.Results;
+          for (var i=0; i < rows.length; i++){
+            var row = rows[i];
+            if(!tracking[row['SendID']]){
+              tracking[row['SendID']] = { Sent: [], Click: [], Open:[] };
+            }
+            tracking[row['SendID']]['Click'].push(row.EventDate+' 'row.URL);
+          }
+          calls++;
+          if(calls==callsToWait){
             console.log('TRACKING');
             console.log( tracking );
             return tracking;
@@ -159,7 +162,7 @@ express()
           return;
         }
 
-        console.log( response.body );
+        //console.log( response.body );
         try{
           var rows =  response.body.Results;
           for (var i=0; i < rows.length; i++){
@@ -171,7 +174,7 @@ express()
           }
 
           calls++;
-          if(calls==3){
+          if(calls==callsToWait){
             console.log('TRACKING');
             console.log( tracking );
             return tracking;
