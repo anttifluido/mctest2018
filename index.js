@@ -57,7 +57,7 @@ express()
     var reqoptions = {
       filter: {
         leftOperand: 'SubscriberKey',
-        operator: 'equals',
+        operator: 'notEquals',
         rightOperand: 'xxx'
       }
     };
