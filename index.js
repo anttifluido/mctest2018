@@ -72,7 +72,7 @@ express()
 */
 
     var tracking = {};
-    var calls = [];
+    var calls = 0;
 
     var reqoptions = {
       filter: {
@@ -82,7 +82,7 @@ express()
       }
     };
 
-    calls.push(new Promise(SoapClient.retrieve(
+    SoapClient.retrieve(
       'ClickEvent',
       ["EventDate","SendID","SubscriberKey","URL"],
       reqoptions,
@@ -103,15 +103,18 @@ express()
             }
             tracking[row['SendID']]['Click'].push(row.EventDate);
           }
-          console.log('TRACKING');
-          console.log( tracking );
+          if(calls==3){
+            console.log('TRACKING');
+            console.log( tracking );
+            return tracking;
+          }
         }catch(e){
           console.log(e);
         }
       }
-    )));
+    );
 
-    calls.push(new Promise(SoapClient.retrieve(
+    SoapClient.retrieve(
       'SentEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -132,15 +135,18 @@ express()
             }
             tracking[row['SendID']]['Sent'].push(row.EventDate);
           }
-          console.log('TRACKING');
-          console.log( tracking );
+          if(calls==3){
+            console.log('TRACKING');
+            console.log( tracking );
+            return tracking;
+          }
         }catch(e){
           console.log(e);
         }
       }
-    )));
+    );
 
-    calls.push(new Promise(SoapClient.retrieve(
+    SoapClient.retrieve(
       'OpenEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -161,19 +167,19 @@ express()
             }
             tracking[row['SendID']]['Open'].push(row.EventDate);
           }
-          console.log('TRACKING');
-          console.log( tracking );
+
+          calls++;
+          if(calls==3){
+            console.log('TRACKING');
+            console.log( tracking );
+            return tracking;
+          }
         }catch(e){
           console.log(e);
         }
       }
-    )));
-    console.log(Promise);
-    console.log(calls);
-    console.log(Promise.all(calls));
-    Promise.all(calls).then(() => {
-        console.log('TADAA');
-    });
+    );
+
   /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
