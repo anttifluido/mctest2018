@@ -38,7 +38,7 @@ express()
 
     SoapClient.retrieve(
       'DataExtension',
-      ["Description","CustomerKey","SendableSubscriberField","Name","SendableDataExtensionField"],
+      ["Description","CustomerKey","Fields","Name","SendableDataExtensionField"],
       reqoptions,
       function( err, response ) {
         if ( err ) {
