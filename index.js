@@ -30,7 +30,9 @@ express()
 
     var reqoptions = {
       filter: {
-
+        leftOperand: 'CustomerKey',
+        operator: 'notEquals',
+        rightOperand: 'xxx'
       }
     };
 
@@ -87,7 +89,7 @@ express()
     	//origin: 'https://webservice.s10.exacttarget.com/Service.asmx' // default --> https://www.exacttargetapis.com
     };*/
 
-    
+
     /*
     const RestClient = new FuelRest(optionsRest);
 
