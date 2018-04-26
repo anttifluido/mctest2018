@@ -100,9 +100,9 @@ express()
         for (var i=0; i < rows.length(); i++){
           row = rows[i];
           if(!tracking[row['SendID']]){
-            tracking[row['SendID'] = {Send:0};
+            tracking[row['SendID']] = {Send:0};
           }
-          tracking[row['SendID']['Send']++;
+          tracking[row['SendID']]['Send']++;
         }
         console.log('TRACKING');
           console.log( tracking );
