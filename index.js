@@ -72,6 +72,7 @@ express()
 */
 
     var tracking = {};
+    var calls = [];
 
     var reqoptions = {
       filter: {
@@ -81,7 +82,7 @@ express()
       }
     };
 
-    SoapClient.retrieve(
+    calls.push(SoapClient.retrieve(
       'ClickEvent',
       ["EventDate","SendID","SubscriberKey","URL"],
       reqoptions,
@@ -108,9 +109,9 @@ express()
           console.log(e);
         }
       }
-    );
+    ));
 
-    SoapClient.retrieve(
+    calls.push(SoapClient.retrieve(
       'SentEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -137,9 +138,9 @@ express()
           console.log(e);
         }
       }
-    );
+    ));
 
-    SoapClient.retrieve(
+    calls.push(SoapClient.retrieve(
       'OpenEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -166,8 +167,10 @@ express()
           console.log(e);
         }
       }
-    );
+    ));
     console.log(Promise);
+    console.log(calls);
+    console.log(Promise.all(calls));
   /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
