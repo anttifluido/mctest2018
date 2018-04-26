@@ -57,13 +57,13 @@ express()
     var reqoptions = {
       filter: {
         leftOperand: 'SubscriberKey',
-        operator: 'notEquals',
+        operator: 'equals',
         rightOperand: 'xxx'
       }
     };
 
     SoapClient.retrieve(
-      'SentEvent',
+      'ClickEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
       function( err, response ) {
