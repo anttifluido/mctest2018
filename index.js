@@ -96,9 +96,9 @@ express()
         // response.res === full response from request client
         console.log( response.body );
         try{
-          var rows = JSON.parse(response.body);
-          for (var i=0; i < rows.Results.length; i++){
-            var row = rows.Results[i];
+          var rows =  response.body.Results;
+          for (var i=0; i < rows.length; i++){
+            var row = rows[i];
             if(!tracking[row['SendID']]){
               tracking[row['SendID']] = { Send: [] };
             }
