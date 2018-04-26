@@ -87,7 +87,7 @@ express()
     	uri: '/asset/v1/content/assets',
       headers:{},
     	json: {
-        "name": "TestUpload4",
+        "name": "TestUpload5",
         "assetType": {
           "name": "gif",
           "id": 20
