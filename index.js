@@ -71,6 +71,8 @@ express()
     );
 */
 
+    var tracking = {};
+
     var reqoptions = {
       filter: {
         leftOperand: 'SubscriberKey',
@@ -93,6 +95,17 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
+        var rows = JSON.parse(response.body);
+        var row;
+        for (var i=0; i < rows.length(); i++){
+          row = rows[i];
+          if(!tracking[row['SendID']]){
+            tracking[row['SendID'] = {'Send':0};
+          }
+          tracking[row['SendID']{'Send'}++;
+        }
+        console.log('TRACKING');
+          console.log( tracking );
       }
     );
 
