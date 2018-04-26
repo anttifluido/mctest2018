@@ -100,7 +100,7 @@ express()
           for (var i=0; i < rows.length; i++){
             var row = rows[i];
             if(!tracking[row['SendID']]){
-              tracking[row['SendID']] = { Click: [] };
+              tracking[row['SendID']] = { Sent: [], Click: [], Open:[] };
             }
             tracking[row['SendID']]['Click'].push(row.EventDate);
           }
@@ -131,7 +131,7 @@ express()
           for (var i=0; i < rows.length; i++){
             var row = rows[i];
             if(!tracking[row['SendID']]){
-              tracking[row['SendID']] = { Sent: [] };
+              tracking[row['SendID']] = { Sent: [], Click: [], Open:[] };
             }
             tracking[row['SendID']]['Sent'].push(row.EventDate);
           }
@@ -162,7 +162,7 @@ express()
           for (var i=0; i < rows.length; i++){
             var row = rows[i];
             if(!tracking[row['SendID']]){
-              tracking[row['SendID']] = { Open: [] };
+              tracking[row['SendID']] = { Sent: [], Click: [], Open:[] };
             }
             tracking[row['SendID']]['Open'].push(row.EventDate);
           }
