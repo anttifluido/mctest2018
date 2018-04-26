@@ -50,7 +50,33 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
-      } 
+      }
+    );
+
+
+    var reqoptions = {
+      filter: {
+        leftOperand: 'SubscriberKey',
+        operator: 'notEquals',
+        rightOperand: 'xxx'
+      }
+    };
+
+    SoapClient.retrieve(
+      'SentEvent',
+      ["EventDate","SendID","SubscriberKey"],
+      reqoptions,
+      function( err, response ) {
+        if ( err ) {
+          // error here
+          console.log( err );
+          return;
+        }
+
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
+      }
     );
 
   /*  var reqoptions = {
