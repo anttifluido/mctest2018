@@ -83,7 +83,7 @@ express()
 
     SoapClient.retrieve(
       'ClickEvent',
-      ["EventDate","SendID","SubscriberKey"],
+      ["EventDate","SendID","SubscriberKey","URL"],
       reqoptions,
       function( err, response ) {
         if ( err ) {
@@ -92,8 +92,6 @@ express()
           return;
         }
 
-        // response.body === parsed soap response (JSON)
-        // response.res === full response from request client
         console.log( response.body );
         try{
           var rows =  response.body.Results;
@@ -123,8 +121,6 @@ express()
           return;
         }
 
-        // response.body === parsed soap response (JSON)
-        // response.res === full response from request client
         console.log( response.body );
         try{
           var rows =  response.body.Results;
@@ -154,8 +150,6 @@ express()
           return;
         }
 
-        // response.body === parsed soap response (JSON)
-        // response.res === full response from request client
         console.log( response.body );
         try{
           var rows =  response.body.Results;
@@ -173,7 +167,7 @@ express()
         }
       }
     );
-
+    console.log(await Promise.all(promises));
   /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
