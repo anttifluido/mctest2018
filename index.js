@@ -82,7 +82,7 @@ express()
       }
     };
 
-    calls.push(SoapClient.retrieve(
+    calls.push(new Promise(SoapClient.retrieve(
       'ClickEvent',
       ["EventDate","SendID","SubscriberKey","URL"],
       reqoptions,
@@ -109,9 +109,9 @@ express()
           console.log(e);
         }
       }
-    ));
+    )));
 
-    calls.push(SoapClient.retrieve(
+    calls.push(new Promise(SoapClient.retrieve(
       'SentEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -138,9 +138,9 @@ express()
           console.log(e);
         }
       }
-    ));
+    )));
 
-    calls.push(SoapClient.retrieve(
+    calls.push(new Promise(SoapClient.retrieve(
       'OpenEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
@@ -167,7 +167,7 @@ express()
           console.log(e);
         }
       }
-    ));
+    )));
     console.log(Promise);
     console.log(calls);
     console.log(Promise.all(calls));
