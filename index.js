@@ -100,9 +100,9 @@ express()
           for (var i=0; i < rows.length; i++){
             var row = rows[i];
             if(!tracking[row['SendID']]){
-              tracking[row['SendID']] = { Send: [] };
+              tracking[row['SendID']] = { Click: [] };
             }
-            tracking[row['SendID']]['Send'].push(row);
+            tracking[row['SendID']]['Click'].push(row.EventDate);
           }
           console.log('TRACKING');
           console.log( tracking );
@@ -126,6 +126,20 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
+        try{
+          var rows =  response.body.Results;
+          for (var i=0; i < rows.length; i++){
+            var row = rows[i];
+            if(!tracking[row['SendID']]){
+              tracking[row['SendID']] = { Sent: [] };
+            }
+            tracking[row['SendID']]['Sent'].push(row.EventDate);
+          }
+          console.log('TRACKING');
+          console.log( tracking );
+        }catch(e){
+          console.log(e);
+        }
       }
     );
 
@@ -143,6 +157,20 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
+        try{
+          var rows =  response.body.Results;
+          for (var i=0; i < rows.length; i++){
+            var row = rows[i];
+            if(!tracking[row['SendID']]){
+              tracking[row['SendID']] = { Open: [] };
+            }
+            tracking[row['SendID']]['Open'].push(row.EventDate);
+          }
+          console.log('TRACKING');
+          console.log( tracking );
+        }catch(e){
+          console.log(e);
+        }
       }
     );
 
