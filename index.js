@@ -95,17 +95,20 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
-        var rows = JSON.parse(response.body);
-        var row;
-        for (var i=0; i < rows.length(); i++){
-          row = rows[i];
-          if(!tracking[row['SendID']]){
-            tracking[row['SendID']] = { Send: [] };
+        try{
+          var rows = JSON.parse(response.body);
+          for (var i=0; i < rows.Results.length; i++){
+            var row = rows.Results[i];
+            if(!tracking[row['SendID']]){
+              tracking[row['SendID']] = { Send: [] };
+            }
+            tracking[row['SendID']]['Send'].push(row);
           }
-          tracking[row['SendID']]['Send'].push(row);
-        }
-        console.log('TRACKING');
+          console.log('TRACKING');
           console.log( tracking );
+        }catch(e){
+          console.log(e);
+        }
       }
     );
 
