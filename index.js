@@ -167,7 +167,7 @@ express()
         }
       }
     );
-    console.log(await Promise.all(promises));
+    console.log(Promise);
   /*  var reqoptions = {
       filter: {
         leftOperand: 'Client',
@@ -247,3 +247,13 @@ express()
     console.log(request)
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+  function continueExec(waits) {
+    //here is the trick, wait until var callbackCount is set number of callback functions
+    if (callbackCount < 2) {
+        setTimeout(continueExec, 1000);
+        return;
+    }
+    //Finally, do what you need
+    doSomeThing();
+}
