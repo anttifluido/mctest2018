@@ -30,9 +30,9 @@ express()
 
     var reqoptions = {
       filter: {
-        leftOperand: 'CustomerKey',
-        operator: 'notEquals',
-        rightOperand: 'xxx'
+        leftOperand: 'IsSendable',
+        operator: 'equals',
+        rightOperand: true
       }
     };
 
