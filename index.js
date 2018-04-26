@@ -103,6 +103,7 @@ express()
             }
             tracking[row['SendID']]['Click'].push(row.EventDate);
           }
+          calls++;
           if(calls==3){
             console.log('TRACKING');
             console.log( tracking );
@@ -135,6 +136,7 @@ express()
             }
             tracking[row['SendID']]['Sent'].push(row.EventDate);
           }
+          calls++;
           if(calls==3){
             console.log('TRACKING');
             console.log( tracking );
