@@ -20,7 +20,7 @@ express()
 
     var SoapClient = new FuelSoap(options);
 
-    var reqoptions = {
+  /*  var reqoptions = {
       filter: {
         leftOperand: 'CustomerKey',
         operator: 'equals',
@@ -36,6 +36,8 @@ express()
       }
     };
 
+
+
     SoapClient.retrieve(
       'DataExtension',
       ["Description","CustomerKey","Name"],
@@ -50,20 +52,69 @@ express()
         // response.body === parsed soap response (JSON)
         // response.res === full response from request client
         console.log( response.body );
+        var dataextensions = JSON.parse(response.body );
+        for (var i = 0; i < dataextensions.Results; i++){
+            SoapClient.retrieve(
+              'DataExtension',
+              ["Description","CustomerKey","Name"],
+              req2options,
+              function( err, response ) {
+                if ( err ) {
+                  // error here
+                  console.log( err );
+                  return;
+                }
+                console.log( response.body );
+              }
+        }
       }
     );
-
+*/
 
     var reqoptions = {
       filter: {
         leftOperand: 'SubscriberKey',
-        operator: 'notEquals',
-        rightOperand: 'xxx'
+        operator: 'equals',
+        rightOperand: '0030O000023EAfFQAW'
       }
     };
 
     SoapClient.retrieve(
       'ClickEvent',
+      ["EventDate","SendID","SubscriberKey"],
+      reqoptions,
+      function( err, response ) {
+        if ( err ) {
+          // error here
+          console.log( err );
+          return;
+        }
+
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
+      }
+    );
+
+    SoapClient.retrieve(
+      'SentEvent',
+      ["EventDate","SendID","SubscriberKey"],
+      reqoptions,
+      function( err, response ) {
+        if ( err ) {
+          // error here
+          console.log( err );
+          return;
+        }
+
+        // response.body === parsed soap response (JSON)
+        // response.res === full response from request client
+        console.log( response.body );
+      }
+    );
+
+    SoapClient.retrieve(
+      'OpenEvent',
       ["EventDate","SendID","SubscriberKey"],
       reqoptions,
       function( err, response ) {
