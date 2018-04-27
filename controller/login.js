@@ -8,6 +8,8 @@ module.exports = {
       console.log(req);
       console.log('headers');
       console.log(req.headers)
+      console.log('body');
+      console.log(req.body)
 
       /*var secret = process.env.SECRET;
        var decodedJWT = jwt.decode(req.query.encodedJWT, secret);
