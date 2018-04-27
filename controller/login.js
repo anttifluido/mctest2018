@@ -7,9 +7,12 @@ module.exports = {
 
       console.log(req.body.jwt)
 
-      /*var secret = process.env.SECRET;
-       var decodedJWT = jwt.decode(req.query.encodedJWT, secret);
-      console.log(decodedJWT);*/
+      var secret = process.env.SECRET;
+      var decodedJWT = jwt.decode(req.body.jwt, secret);
+      console.log(decodedJWT);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify({ decodedJWT }));
+      return ;
     },
     logout : function(req, res){
       console.log('logout');
